@@ -13,14 +13,15 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('water_meter_bills', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email')->unique();
-            $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
-            $table->string('phone');
-            $table->rememberToken();
+            $table->foreignId('water_meter_id');
+            $table->dateTime('periode');
+            $table->string('total_meter');
+            $table->string('meter_before');
+            $table->string('meter_after');
+            $table->string('price_permeter_cubic');
+            $table->string('total_amount');
             $table->timestamps();
         });
     }
@@ -32,6 +33,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('water_meter_bills');
     }
 };
